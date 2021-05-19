@@ -1,6 +1,5 @@
 # Takeoff
 
-/*
 Having the 18-hole scores for a list of golfers, generate the tournament leaderboard.
 Each line in the input will contain the name of the golfer (can be one or multiple) and 18 integers.
 Example:
@@ -13,4 +12,4 @@ John 67 (30+37)
 Dave Davidson 76 (32+44)
 George Jr. 80 (36+44)
 The code should be fast, readable and modular.
- */
+
