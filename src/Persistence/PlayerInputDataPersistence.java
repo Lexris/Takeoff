@@ -3,6 +3,7 @@ package Persistence;
 import Business.PlayerInputDataProcessor;
 import Model.PlayerInputData;
 import Model.PlayerOutputData;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,7 +23,8 @@ public class PlayerInputDataPersistence {
      * create the PlayerInputData object and compare it to the scoreboard.
      * For the sake of efficiency, the single responsibility principle is violated at the gain
      * of having to keep almost no data stored in the memory due to the on-the-spot processing.
-     * @param fileName file to be processed
+     *
+     * @param fileName   file to be processed
      * @param holeNumber length of the score array(=number of holes in the golf game)
      * @throws IOException
      */
@@ -37,7 +39,7 @@ public class PlayerInputDataPersistence {
             while (dataMatcher.find()) {
                 int[] scores = new int[holeNumber];
                 int captureGroupLimit = holeNumber + 2;
-                for(int i=2; i< captureGroupLimit; i++) {
+                for (int i = 2; i < captureGroupLimit; i++) {
                     scores[i - 2] = Integer.parseInt(dataMatcher.group(i));
                 }
                 PlayerInputData playerInputData = new PlayerInputData(dataMatcher.group(1), scores);

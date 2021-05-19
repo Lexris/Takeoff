@@ -14,10 +14,12 @@ public class PlayerInputDataProcessor {
             new PlayerOutputData(),
     };
 
-    public PlayerInputDataPersistence playerInputDataPersistence = new PlayerInputDataPersistence(PlayerInputDataProcessor.this::comparePlayer);
+    private final PlayerInputDataPersistence playerInputDataPersistence = new PlayerInputDataPersistence(PlayerInputDataProcessor.this::comparePlayer);
 
     /**
      * The top 3 players are computed and printed in the stdout.
+     *
+     * @param fileName file to be processed
      */
     public void printTopPlayers(String fileName) {
         try {
@@ -33,6 +35,7 @@ public class PlayerInputDataProcessor {
 
     /**
      * Compares current top 3 players to the new player and updates the list.
+     *
      * @param playerOutputData new player to be checked against the list
      */
     private void comparePlayer(PlayerOutputData playerOutputData) {
