@@ -37,12 +37,20 @@ public class PlayerInputDataPersistence {
         while ((line = bufferedReader.readLine()) != null) {
             Matcher dataMatcher = dataPattern.matcher(line);
             while (dataMatcher.find()) {
+                String name = dataMatcher.group(1);
+
                 int[] scores = new int[holeNumber];
-                int captureGroupLimit = holeNumber + 2;
-                for (int i = 2; i < captureGroupLimit; i++) {
+                /* captured group[0] being the whole match(the line) by default and captured group[1] being the name,
+                the groups containing the scores are starting at index 2 of the matched groups array and are a total
+                of holeNumber. Thus there are a total of holeNumber + 2 captured groups(whole match, name, holeNumber
+                scores) for our given regex pattern */
+                int totalCaptureGroups = holeNumber + 2;
+                // build the scores array for the currently processed player
+                for (int i = 2; i < totalCaptureGroups; i++) {
                     scores[i - 2] = Integer.parseInt(dataMatcher.group(i));
                 }
-                PlayerInputData playerInputData = new PlayerInputData(dataMatcher.group(1), scores);
+
+                PlayerInputData playerInputData = new PlayerInputData(name, scores);
                 processPlayerInputData.comparePlayer(new PlayerOutputData(playerInputData));
             }
         }
